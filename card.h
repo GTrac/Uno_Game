@@ -9,7 +9,7 @@ using namespace std;
 /**
  * Enumeration to represent UNO card colors.
  */
-enum Color{RED, BLUE, GREEN, YELLOW, NUM_COLORS};
+enum Color{RED, BLUE, GREEN, YELLOW, ALLCOLOR, NUM_COLORS};
 
 /**
  * @class Card
