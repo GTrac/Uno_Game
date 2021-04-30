@@ -4,7 +4,7 @@
 /**
  * Enumerated value indicating turn direction.
  */
-enum TurnDirection {RIGHT, LEFT};
+enum TurnDirection {FORWARD, BACKWARD};
 
 /**
  * @class GameState
