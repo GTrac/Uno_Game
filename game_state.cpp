@@ -5,11 +5,11 @@ GameState::GameState(int n){
     currentPlayerIndex = 0;
     numCardsToPlay = 1;
     numCardsToDraw = 0;
-    turnDirection = LEFT;
+    turnDirection = FORWARD;
 }
 
 void GameState::nextTurn(){
-    if(turnDirection == LEFT){
+    if(turnDirection == FORWARD){
         currentPlayerIndex++;
         if(currentPlayerIndex >= numPlayers){
             currentPlayerIndex = 0;
