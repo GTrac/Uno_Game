@@ -12,6 +12,11 @@ using namespace std;
 enum Color{RED, BLUE, GREEN, YELLOW, ALLCOLOR, NUM_COLORS};
 
 /**
+ * Enumeration to represent UNO card effects.
+ */
+enum Effect{SKIP, DRAWTWO, DRAWFOUR, WILD, REVERSE, NUM_EFFECTS};
+
+/**
  * @class Card
  * 
  * @brief An abstract class used to describe a generic UNO card.
@@ -37,6 +42,14 @@ class Card{
     int getNumber() const;
     
     /**
+     * Accessor for card number.
+     * 
+     * @return effect type of the card.
+     */
+    int getEffect() const;//NOT WRITTEN IN .CPP FILE    
+ 
+    
+    /**
      * Mutator for card color.
      * 
      * @param c The enumerated color type for the card.
@@ -49,6 +62,13 @@ class Card{
      * @param n The integer value for the card.
      */
     void setNumber(int n);
+    
+    /**
+     * Mutator for card number.
+     * 
+     * @param e The Effect type for the card.
+     */
+    void setEffect(int e);//NOT WRITTEN IN .CPP FILE
     
     
     virtual string render(int line) const = 0;
