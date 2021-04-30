@@ -9,12 +9,12 @@ using namespace std;
 /**
  * Enumeration to represent UNO card colors.
  */
-enum Color{RED, BLUE, GREEN, YELLOW, ALLCOLOR, NUM_COLORS};
+enum Color{RED, BLUE, GREEN, YELLOW, NUM_COLORS, ALLCOLOR};
 
 /**
  * Enumeration to represent UNO card effects.
  */
-enum Effect{SKIP, DRAWTWO, DRAWFOUR, WILD, REVERSE, NUM_EFFECTS};
+enum Effect{DRAWTWO, REVERSE, SKIP, WILD, DRAWFOUR, NUM_EFFECTS, NUMBER};
 
 /**
  * @class Card
@@ -25,6 +25,7 @@ class Card{
     protected:
     Color color;
     int number;
+    Effect effect;
     
     public:
     /**
@@ -46,7 +47,7 @@ class Card{
      * 
      * @return effect type of the card.
      */
-    int getEffect() const;//NOT WRITTEN IN .CPP FILE    
+    Effect getEffect() const;//NOT WRITTEN IN .CPP FILE    
  
     
     /**
@@ -68,7 +69,7 @@ class Card{
      * 
      * @param e The Effect type for the card.
      */
-    void setEffect(int e);//NOT WRITTEN IN .CPP FILE
+    void setEffect(Effect e);//NOT WRITTEN IN .CPP FILE
     
     
     virtual string render(int line) const = 0;
@@ -89,7 +90,7 @@ class NumberCard : public Card{
      * @param c The enumeratorated color type for the card.
      * @param n The integer value of the card's number.
      */
-    NumberCard(Color c, int n);
+    NumberCard(Color c, int n, Effect e);
     
     /**
      * Returns the ascii string with the rendering of the cards image at a 

@@ -107,10 +107,18 @@ void buildDeck(vector<Card*> &deck){
     // Create Number Cards
     for(int c = RED; c < NUM_COLORS; c++){
         for(int n = 0; n < 10; n++){
-            Card* temp = new NumberCard((Color)c, n);
+            Card* temp = new NumberCard((Color)c, n, NUMBER);
             deck.push_back(temp);
             deck.push_back(temp);
         }
+        //ADD A FOR LOOP ITERATING THROUGH CARD EFFECT NUMERATOR
+        for(int e = DRAWTWO; e < NUM_EFFECTS; e++){
+            int n = e+10;
+            Card* temp = new NumberCard((Color)c, n, (Effect)e);
+            deck.push_back(temp);
+            deck.push_back(temp);
+        }
+        
     }
 }
 
