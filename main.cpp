@@ -76,7 +76,6 @@ void renderDiscard(vector<Card*>);
 void takeTurn(vector<Card*>& deck, vector<Card*>& hand, vector<Card*>& discard, GameState& gameState);
 
 
-
 int Num_Of_Player(){
     int var;
     cout << "Hello in UNO Game" << endl;
@@ -99,8 +98,6 @@ int Num_Of_Player(){
 }
 
 
-
-
 int main(){
     srand(time(0));
     
@@ -120,15 +117,11 @@ int main(){
     populateHands(deck, hands);
     drawCards(deck, discard, 1);
     
-    while(1 /* TODO: Check for winner (no cards in hand)*/){
-        
-        if (hands.at(gameState.currentPlayerIndex).size() == 0){
-            cout << "Player " << gameState.currentPlayerIndex << " is the winner" << endl;
-            break;
-        }
+
+    while(hands.at(gameState.currentPlayerIndex).size() != 0){       
         takeTurn(deck, hands.at(gameState.currentPlayerIndex), discard, gameState);
     }
-    
+    cout << "Player " << gameState.currentPlayerIndex << " is the winner" << endl;
     return 0;
 }
 
@@ -152,7 +145,10 @@ void buildDeck(vector<Card*> &deck){
             deck.push_back(temp);
             deck.push_back(temp);
         }
-        
+        for(int w = WILD; w < NUM_WILDTYPES; w++){
+            Card* temp = new WildCard((WildTypes)w);
+            deck.push_back(temp);
+        }
     }
 }
 
