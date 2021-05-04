@@ -140,9 +140,54 @@ string SpecialCard::render(int line) const{
 }
 
 bool SpecialCard::play(Card* discard, GameState &gameState) {
-    if(color == discard->getColor() ||  effect == WILD || effect == DRAWFOUR){
+    if(color == discard->getColor() ||  effect == discard->getEffect()){
         return true;
     } else {
         return false;
     }
+}
+
+WildCard::WildCard(WildTypes w) {
+    setWildType(w);
+}
+
+WildCard::getWildType() const{
+    return wildType;
+}
+
+WildCard::setWildType(w){
+    wildType = w;
+}
+
+
+string WildCard::render(int line) const{
+    stringstream ss;
+    switch(line){
+        case 0: return ".___________.";
+        case 1: return "|           |";
+        case 2: return "|           |";
+        case 3:
+            switch(wildType){
+                case WILD:
+                    return "|   Wild    |";
+                    break;
+                case DRAWFOUR:
+                    return "| Draw Four |";
+                    break;
+                default:
+                    return "|           |";
+                    break;
+            }
+            
+        case 4: return "|           |";
+        case 5: return "|           |";
+        case 6: return "|           |";
+        case 7: return "|___________|";
+        default:
+            return " ";
+    }
+}
+
+bool WildCard::play(Card* discard, GameState &gameState) {
+    return true;
 }
