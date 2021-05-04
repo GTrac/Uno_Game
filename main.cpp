@@ -76,6 +76,7 @@ void renderDiscard(vector<Card*>);
 void takeTurn(vector<Card*>& deck, vector<Card*>& hand, vector<Card*>& discard, GameState& gameState);
 
 
+
 int Num_Of_Player(){
     int var;
     cout << "Hello in UNO Game" << endl;
@@ -96,6 +97,8 @@ int Num_Of_Player(){
     }
     return var;
 }
+
+
 
 
 int main(){
@@ -139,14 +142,13 @@ void buildDeck(vector<Card*> &deck){
     // Create Number Cards
     for(int c = RED; c < NUM_COLORS; c++){
         for(int n = 0; n < 10; n++){
-            Card* temp = new NumberCard((Color)c, n, NUMBER);
+            Card* temp = new NumberCard((Color)c, n);
             deck.push_back(temp);
             deck.push_back(temp);
         }
         //ADD A FOR LOOP ITERATING THROUGH CARD EFFECT NUMERATOR
         for(int e = DRAWTWO; e < NUM_EFFECTS; e++){
-            int n = e+10;
-            Card* temp = new NumberCard((Color)c, n, (Effect)e);
+            Card* temp = new SpecialCard((Color)c, (Effect)e);
             deck.push_back(temp);
             deck.push_back(temp);
         }
@@ -206,10 +208,13 @@ void takeTurn(vector<Card*> &deck, vector<Card*> &hand, vector<Card*> &discard, 
     renderDiscard(discard);
     cout << "Player " << gameState.currentPlayerIndex << "'s turn." << endl;
     
+ 
+    
     // TODO: Draw cards if necessary (draw 2 card)
     drawCards(deck, hand, gameState.numCardsToDraw);
     gameState.numCardsToDraw = 0; // reset cards to draw back to 0
     
+
     renderHand(hand);
     
     // loop for number of cards to play (0 if previously played card was a "skip" or "draw 2")

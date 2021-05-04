@@ -24,13 +24,62 @@ void Card::setEffect(Effect e){
     effect = e;
 }
 
-NumberCard::NumberCard(Color c, int n, Effect e) {
+NumberCard::NumberCard(Color c, int n) {
     setColor(c);
     setNumber(n);
-    setEffect(e);
 }
 
 string NumberCard::render(int line) const{
+    stringstream ss;
+    switch(line){
+        case 0: return ".___________.";
+        case 1: return "|           |";
+        case 2:
+            switch(color){
+            case RED:
+                return "|    RED    |";
+                break;
+            case BLUE:
+                return "|    BLUE   |";
+                break;
+            case GREEN:
+                return "|   GREEN   |";
+                break;
+            case YELLOW:
+                return "|  YELLOW   |";
+                break;
+            default:
+                return "|           |";
+                break;
+            break; 
+            }
+        case 3:
+            ss << "|     " <<  number << "     |";
+            return ss.str();
+        case 4: return "|           |";
+        case 5: return "|           |";
+        case 6: return "|           |";
+        case 7: return "|___________|";
+        default:
+            return " ";
+    }
+}
+
+bool NumberCard::play(Card* discard, GameState &gameState) {
+    if(color == discard->getColor() || number == discard->getNumber()){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+SpecialCard::SpecialCard(Color c, Effect e) {
+    setColor(c);
+    setEffect(e);
+}
+
+string SpecialCard::render(int line) const{
     stringstream ss;
     switch(line){
         case 0: return ".___________.";
@@ -61,25 +110,24 @@ string NumberCard::render(int line) const{
             }
         case 3:
             switch(effect){
-            case NUMBER:
-                ss << "|     " <<  number << "     |";
-                return ss.str();
-                break;
-            case DRAWTWO:
-                return "| Draw  Two |";
-                break; 
-            case REVERSE:
-                return "|  Reverse  |";
-                break;
-            case SKIP:
-                return "|   Skip    |";
-                break;
-            case WILD:
-                return "|   Wild    |";
-                break;
-            case DRAWFOUR:
-                return "| Draw Four |";
-                break;
+                case DRAWTWO:
+                    return "| Draw  Two |";
+                    break; 
+                case REVERSE:
+                    return "|  Reverse  |";
+                    break;
+                case SKIP:
+                    return "|   Skip    |";
+                    break;
+                case WILD:
+                    return "|   Wild    |";
+                    break;
+                case DRAWFOUR:
+                    return "| Draw Four |";
+                    break;
+                default:
+                    return "|           |";
+                    break;
             }
             
         case 4: return "|           |";
@@ -91,10 +139,58 @@ string NumberCard::render(int line) const{
     }
 }
 
-bool NumberCard::play(Card* discard, GameState &gameState) {
-    if(color == discard->getColor() || number == discard->getNumber() || effect == WILD || effect == DRAWFOUR){
+bool SpecialCard::play(Card* discard, GameState &gameState) {
+    if(color == discard->getColor() ||  effect == discard->getEffect()){
         return true;
     } else {
         return false;
     }
+}
+
+WildCard::WildCard(WildTypes w) {
+    setWildType(w);
+}
+
+WildCard::getWildType() const{
+    return wildType;
+}
+
+WildCard::setWildType(w){
+    wildType = w;
+}
+
+
+string WildCard::render(int line) const{
+    stringstream ss;
+    switch(line){
+        case 0: return ".___________.";
+        case 1: return "|           |";
+        case 2: return "|           |";
+        case 3:
+            switch(wildType){
+                case WILD:
+                    return "|   Wild    |";
+                    break;
+                case DRAWFOUR:
+                    return "| Draw Four |";
+                    break;
+                default:
+                    return "|           |";
+                    break;
+            }
+            
+        case 4: return "|           |";
+        case 5: return "|           |";
+        case 6: return "|           |";
+        case 7: return "|___________|";
+        default:
+            return " ";
+    }
+}
+
+bool WildCard::play(Card* discard, GameState &gameState) {
+    switch(wildType){
+        case 
+    }
+    return true;
 }
