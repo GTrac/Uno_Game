@@ -75,11 +75,39 @@ void renderDiscard(vector<Card*>);
  */
 void takeTurn(vector<Card*>& deck, vector<Card*>& hand, vector<Card*>& discard, GameState& gameState);
 
-int global_var ; 
+
+
+int Num_Of_Player(){
+    int var;
+    cout << "Hello in UNO Game" << endl;
+    cout << "Enter the number of players (min 2 , max 10): ";
+    cin >> var;
+    while (true){
+        if (var < 2){
+            cout << "number your entred less than the min requer, please re-enter:  ";
+            cin >> var;
+        }else if (var > 10){
+            cout << "number your entred more than the max requer, please re-enter:  ";
+            cin >> var;
+        }else {
+            cout << "Enjoy :) " << endl;
+            break;
+        }
+        
+    }
+    return var;
+}
+
+
+
 
 int main(){
     srand(time(0));
-    const int NUM_PLAYERS = 2;
+    
+    // 2 is min and 10 is max 
+    
+    const int NUM_PLAYERS = Num_Of_Player();
+    
     GameState gameState(NUM_PLAYERS);
     
     vector<Card*> deck;
