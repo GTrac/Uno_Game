@@ -75,6 +75,8 @@ void renderDiscard(vector<Card*>);
  */
 void takeTurn(vector<Card*>& deck, vector<Card*>& hand, vector<Card*>& discard, GameState& gameState);
 
+int global_var ; 
+
 int main(){
     srand(time(0));
     const int NUM_PLAYERS = 2;
@@ -91,6 +93,11 @@ int main(){
     drawCards(deck, discard, 1);
     
     while(1 /* TODO: Check for winner (no cards in hand)*/){
+        
+        if (hands.at(gameState.currentPlayerIndex).size() == 0){
+            cout << "Player " << gameState.currentPlayerIndex << " is the winner" << endl;
+            break;
+        }
         takeTurn(deck, hands.at(gameState.currentPlayerIndex), discard, gameState);
     }
     
