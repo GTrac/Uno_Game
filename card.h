@@ -207,7 +207,7 @@ class WildCard : public Card{
      * @return A boolean value representing if the card played was valid 
      * according to the top card of the discard pile.
      */
-    bool play(Card*, GameState*);
+    bool play(Card*, GameState&);
 };
 
 

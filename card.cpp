@@ -182,7 +182,7 @@ string WildCard::render(int line) const{
 }
 
 
-bool WildCard::play(Card* discard, GameState *gameState) {
+bool WildCard::play(Card* discard, GameState &gameState) {
     cout << "Please choose a color: \n1. Red\n2. Blue\n3. Green\n4. Yellow"<<endl;
     Color wildColor;
    //cin >> wildColor;
@@ -193,8 +193,8 @@ bool WildCard::play(Card* discard, GameState *gameState) {
             break;
         case DRAWFOUR:
             setColor(wildColor);
-            gameState->numCardsToPlay=0;
-            gameState->numCardsToDraw=4;
+            gameState.numCardsToPlay=0;
+            gameState.numCardsToDraw=4;
             return true;
             break;
         default:
