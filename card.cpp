@@ -141,12 +141,41 @@ string SpecialCard::render(int line) const{
 
 bool SpecialCard::play(Card* discard, GameState &gameState) {
     if(color == discard->getColor() ||  effect == discard->getEffect()){
+            switch(effect){
+                case DRAWTWO:
+                    return true;
+                    break; 
+                case REVERSE:
+				// changes the rotation of game (from CW to CCW or vice versa) 
+				    if (gamestate.reverse = true) {
+					    gamestate.turnDirection = BACKWARD; 
+			    	}
+				    else{
+					    gamestate.turnDirection  = FORWARD; 
+				    }
+                    return true;
+                    break;
+                case SKIP:
+                    if (gamestate.SKIP = true){
+                        //figuring this one out next (Kathleen)
+                    }
+                    return true;
+                    break;
+                case WILD:
+                    return true;
+                    break;
+                case DRAWFOUR:
+                    return true;
+                    break;
+                default:
+                    return false;
+                    break;
+            }
         return true;
     } else {
         return false;
     }
-}
-
+    
 WildCard::WildCard(WildTypes w) {
     setWildType(w);
 }
