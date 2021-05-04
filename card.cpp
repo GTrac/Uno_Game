@@ -141,6 +141,8 @@ string SpecialCard::render(int line) const{
 
 bool SpecialCard::play(Card* discard, GameState &gameState) {
     if(color == discard->getColor() ||  effect == discard->getEffect()){
+        //case statement
+        
         return true;
     } else {
         return false;
@@ -188,9 +190,11 @@ string WildCard::render(int line) const{
     }
 }
 
+
 bool WildCard::play(Card* discard, GameState &gameState) {
     switch(wildType){
-        case 
+        case WILD:
+            cout << "What color "
     }
     return true;
 }
