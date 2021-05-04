@@ -66,7 +66,7 @@ string NumberCard::render(int line) const{
 }
 
 bool NumberCard::play(Card* discard, GameState &gameState) {
-    if(color == discard->getColor() || number == discard->getNumber() || effect == WILD || effect == DRAWFOUR){
+    if(color == discard->getColor() || number == discard->getNumber()){
         return true;
     } else {
         return false;
@@ -189,5 +189,8 @@ string WildCard::render(int line) const{
 }
 
 bool WildCard::play(Card* discard, GameState &gameState) {
+    switch(wildType){
+        case 
+    }
     return true;
 }

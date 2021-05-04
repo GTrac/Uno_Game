@@ -9,7 +9,7 @@ using namespace std;
 /**
  * Enumeration to represent UNO card colors.
  */
-enum Color{RED, BLUE, GREEN, YELLOW, NUM_COLORS, ALLCOLOR};
+enum Color{RED, BLUE, GREEN, YELLOW, NUM_COLORS};
 
 /**
  * Enumeration to represent UNO card effects.
@@ -178,7 +178,7 @@ class WildCard : public Card{
      /**
      * Accessor for the WildCard WildType data.
      * 
-     * @param w sets the WildCard's type
+     * @returns WildTypes enumerator
     */
     WildTypes getWildType() const;
     
