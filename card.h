@@ -14,9 +14,9 @@ enum Color{RED, BLUE, GREEN, YELLOW, NUM_COLORS, NONE};
 /**
  * Enumeration to represent UNO card effects.
  */
-enum Effect{DRAWTWO, REVERSE, SKIP, NUM_EFFECTS};
+enum Effect{DRAWTWO, REVERSE, SKIP, NUM_EFFECTS, NONE};
 
-enum WildTypes{WILD, DRAWFOUR, NUM_WILDTYPES};
+enum WildTypes{WILD, DRAWFOUR, NUM_WILDTYPES, NONE};
 
 /**
  * @class Card
@@ -27,8 +27,8 @@ class Card{
     protected:
     Color color=NONE;
     int number;
-    Effect effect;
-    WildTypes WildType;
+    Effect effect=NONE;
+    WildTypes WildType=NONE;
     
     
     public:
