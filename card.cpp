@@ -158,7 +158,24 @@ string WildCard::render(int line) const{
     switch(line){
         case 0: return ".___________.";
         case 1: return "|           |";
-        case 2: return "|           |";
+        case 2: 
+        switch(color){
+            case RED:
+                return "|    RED    |";
+                break;
+            case BLUE:
+                return "|    BLUE   |";
+                break;
+            case GREEN:
+                return "|   GREEN   |";
+                break;
+            case YELLOW:
+                return "|  YELLOW   |";
+                break;
+            default:
+                return "|           |";
+                break;
+            }
         case 3:
             switch(WildType){
                 case WILD:
@@ -183,9 +200,11 @@ string WildCard::render(int line) const{
 
 
 bool WildCard::play(Card* discard, GameState &gameState) {
-    cout << "Please choose a color: \n1. Red\n2. Blue\n3. Green\n4. Yellow"<<endl;
+    cout << "Please choose a color: \n0. Red\n1. Blue\n2. Green\n3. Yellow"<<endl;
     Color wildColor;
-   //cin >> wildColor;
+    int playerChoice;
+    cin >> playerChoice;
+    wildColor=(Color)playerChoice;
     switch(WildType){
         case WILD:
             setColor(wildColor);
@@ -193,7 +212,7 @@ bool WildCard::play(Card* discard, GameState &gameState) {
             break;
         case DRAWFOUR:
             setColor(wildColor);
-            gameState.numCardsToPlay=0;
+            gameState.skipTurn=true;
             gameState.numCardsToDraw=4;
             return true;
             break;

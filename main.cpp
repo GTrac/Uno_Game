@@ -92,15 +92,11 @@ int main(){
     populateHands(deck, hands);
     drawCards(deck, discard, 1);
     
-    while(1 /* TODO: Check for winner (no cards in hand)*/){
+    while(hands.at(gameState.currentPlayerIndex).size() != 0){
         
-        if (hands.at(gameState.currentPlayerIndex).size() == 0){
-            cout << "Player " << gameState.currentPlayerIndex << " is the winner" << endl;
-            break;
-        }
         takeTurn(deck, hands.at(gameState.currentPlayerIndex), discard, gameState);
     }
-    
+    cout << "Player " << gameState.currentPlayerIndex << " is the winner" << endl;
     return 0;
 }
 

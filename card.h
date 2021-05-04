@@ -9,7 +9,7 @@ using namespace std;
 /**
  * Enumeration to represent UNO card colors.
  */
-enum Color{RED, BLUE, GREEN, YELLOW, NUM_COLORS};
+enum Color{RED, BLUE, GREEN, YELLOW, NUM_COLORS, NONE};
 
 /**
  * Enumeration to represent UNO card effects.
@@ -25,7 +25,7 @@ enum WildTypes{WILD, DRAWFOUR, NUM_WILDTYPES};
  */
 class Card{
     protected:
-    Color color;
+    Color color=NONE;
     int number;
     Effect effect;
     WildTypes WildType;
