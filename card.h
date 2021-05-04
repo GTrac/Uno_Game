@@ -28,6 +28,8 @@ class Card{
     Color color;
     int number;
     Effect effect;
+    WildTypes WildType;
+    
     
     public:
     /**
@@ -157,7 +159,7 @@ class SpecialCard : public Card{
 
 class WildCard : public Card{
     protected:
-    WildTypes WildType;
+
     
     public:
     /**
@@ -172,7 +174,7 @@ class WildCard : public Card{
      * 
      * @param w sets the WildCard's type
     */
-    setWildType(w);
+    void setWildType(WildTypes w);
     
     
      /**
@@ -205,7 +207,7 @@ class WildCard : public Card{
      * @return A boolean value representing if the card played was valid 
      * according to the top card of the discard pile.
      */
-    bool play(Card*, GameState&);
+    bool play(Card*, GameState*);
 };
 
 

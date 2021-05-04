@@ -1,4 +1,5 @@
 #include "card.h"
+#include <iostream>
 
 Color Card::getColor() const{
     return color;
@@ -85,28 +86,24 @@ string SpecialCard::render(int line) const{
         case 0: return ".___________.";
         case 1: return "|           |";
         case 2:
-            if(effect == WILD || effect == DRAWFOUR){
+            switch(color){
+            case RED:
+                return "|    RED    |";
+                break;
+            case BLUE:
+                return "|    BLUE   |";
+                break;
+            case GREEN:
+                return "|   GREEN   |";
+                break;
+            case YELLOW:
+                return "|  YELLOW   |";
+                break;
+            default:
                 return "|           |";
                 break;
-            }else{
-                switch(color){
-                case RED:
-                    return "|    RED    |";
-                    break;
-                case BLUE:
-                    return "|    BLUE   |";
-                    break;
-                case GREEN:
-                    return "|   GREEN   |";
-                    break;
-                case YELLOW:
-                    return "|  YELLOW   |";
-                    break;
-                default:
-                    return "|           |";
-                    break;
-                break; 
-                }
+            break; 
+            
             }
         case 3:
             switch(effect){
@@ -118,12 +115,6 @@ string SpecialCard::render(int line) const{
                     break;
                 case SKIP:
                     return "|   Skip    |";
-                    break;
-                case WILD:
-                    return "|   Wild    |";
-                    break;
-                case DRAWFOUR:
-                    return "| Draw Four |";
                     break;
                 default:
                     return "|           |";
@@ -153,12 +144,12 @@ WildCard::WildCard(WildTypes w) {
     setWildType(w);
 }
 
-WildCard::getWildType() const{
-    return wildType;
+WildTypes WildCard::getWildType() const{
+    return WildType;
 }
 
-WildCard::setWildType(w){
-    wildType = w;
+void WildCard::setWildType(WildTypes w){
+    WildType = w;
 }
 
 
@@ -169,7 +160,7 @@ string WildCard::render(int line) const{
         case 1: return "|           |";
         case 2: return "|           |";
         case 3:
-            switch(wildType){
+            switch(WildType){
                 case WILD:
                     return "|   Wild    |";
                     break;
@@ -191,10 +182,24 @@ string WildCard::render(int line) const{
 }
 
 
-bool WildCard::play(Card* discard, GameState &gameState) {
-    switch(wildType){
+bool WildCard::play(Card* discard, GameState *gameState) {
+    cout << "Please choose a color: \n1. Red\n2. Blue\n3. Green\n4. Yellow"<<endl;
+    Color wildColor;
+   //cin >> wildColor;
+    switch(WildType){
         case WILD:
-            cout << "What color "
+            setColor(wildColor);
+            return true;
+            break;
+        case DRAWFOUR:
+            setColor(wildColor);
+            gameState->numCardsToPlay=0;
+            gameState->numCardsToDraw=4;
+            return true;
+            break;
+        default:
+            return true;
+            break;
     }
-    return true;
+    
 }

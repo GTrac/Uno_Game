@@ -124,7 +124,10 @@ void buildDeck(vector<Card*> &deck){
             deck.push_back(temp);
             deck.push_back(temp);
         }
-        
+        for(int w = WILD; w < NUM_WILDTYPES; w++){
+            Card* temp = new WildCard((WildTypes)w);
+            deck.push_back(temp);
+        }
     }
 }
 
