@@ -9,7 +9,7 @@ Gilbert Traczyk
 Patrick Hinman
 (Shuffled discard cards back into deck)
 
-Mohamed Eksaud
+Mohamed Elsaid
 (Winner validation, ask user number of players)
 
 Kathleen Arrignton
