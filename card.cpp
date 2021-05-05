@@ -156,8 +156,12 @@ bool SpecialCard::play(Card* discard, GameState &gameState) {
                     return true;
                     break;
                 case SKIP:
-                    if (gamestate.SKIP = true){
-                        //figuring this one out next (Kathleen)
+                //adds one to the turn
+                    if (gamestate.turnDirection = FORWARD){
+                        gamestate.turnDirection = FORWARD + 1;
+                    }
+                    else{
+                        gamestate.turnDirection = FORWARD;
                     }
                     return true;
                     break;
