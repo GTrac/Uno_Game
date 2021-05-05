@@ -147,7 +147,7 @@ bool SpecialCard::play(Card* discard, GameState &gameState) {
                     break; 
                 case REVERSE:
 				// changes the rotation of game (from CW to CCW or vice versa) 
-				    if (gamestate.reverse = true) {
+				    if (gamestate.turnDirection = FORWARD) {
 					    gamestate.turnDirection = BACKWARD; 
 			    	}
 				    else{
