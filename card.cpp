@@ -67,7 +67,7 @@ string NumberCard::render(int line) const{
 }
 
 bool NumberCard::play(Card* discard, GameState &gameState) {
-    if(color == discard->getColor() || number == discard->getNumber()){
+    if(color == discard->getColor() || number == discard->getNumber() || NOCOLOR == discard->getColor()){
         return true;
     } else {
         return false;
@@ -131,9 +131,31 @@ string SpecialCard::render(int line) const{
 }
 
 bool SpecialCard::play(Card* discard, GameState &gameState) {
-    if(color == discard->getColor() ||  effect == discard->getEffect()){
-        //case statement
-        
+    if(color == discard->getColor() ||  effect == discard->getEffect() || NOCOLOR == discard->getColor()){
+            switch(effect){
+                case DRAWTWO:
+                    gameState.numCardsToDraw = 2;
+                    return true;
+                    break; 
+                case REVERSE:
+				// changes the rotation of game (from CW to CCW or vice versa) 
+				    if (gameState.turnDirection == FORWARD) {
+					    gameState.turnDirection = BACKWARD; 
+			    	}
+				    else{
+					    gameState.turnDirection  = FORWARD; 
+				    }
+                    return true;
+                    break;
+                case SKIP:
+                //adds one to the turn
+                    gameState.numCardsToPlay = 0;
+                    return true;
+                    break;
+                default:
+                    return false;
+                    break;
+            }
         return true;
     } else {
         return false;
@@ -203,7 +225,15 @@ bool WildCard::play(Card* discard, GameState &gameState) {
     cout << "Please choose a color: \n0. Red\n1. Blue\n2. Green\n3. Yellow"<<endl;
     Color wildColor;
     int playerChoice;
-    cin >> playerChoice;
+    while(true){
+        cin >> playerChoice;
+        if(playerChoice<0 || playerChoice > 3){
+            cout << "Please choose one of the available options (0. 1. 2. or 3.)."<<endl;
+        }else{
+            break;
+        }    
+    }
+    
     wildColor=(Color)playerChoice;
     switch(WildType){
         case WILD:
@@ -212,7 +242,7 @@ bool WildCard::play(Card* discard, GameState &gameState) {
             break;
         case DRAWFOUR:
             setColor(wildColor);
-            gameState.skipTurn=true;
+            gameState.numCardsToPlay = 0;
             gameState.numCardsToDraw=4;
             return true;
             break;

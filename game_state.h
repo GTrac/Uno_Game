@@ -20,6 +20,8 @@ class GameState{
     /// index of the current player
     int currentPlayerIndex;
     
+    int previousPlayerIndex;
+    
     /// number of cards the player can play this turn
     /// (usually 1 or 0. 0 in the cases when the last card was a skip or draw 2)
     

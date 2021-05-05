@@ -9,14 +9,14 @@ using namespace std;
 /**
  * Enumeration to represent UNO card colors.
  */
-enum Color{RED, BLUE, GREEN, YELLOW, NUM_COLORS, NONE};
+enum Color{RED, BLUE, GREEN, YELLOW, NUM_COLORS, NOCOLOR};
 
 /**
  * Enumeration to represent UNO card effects.
  */
-enum Effect{DRAWTWO, REVERSE, SKIP, NUM_EFFECTS, NONE};
+enum Effect{DRAWTWO, REVERSE, SKIP, NUM_EFFECTS, NOEFFECT};
 
-enum WildTypes{WILD, DRAWFOUR, NUM_WILDTYPES, NONE};
+enum WildTypes{WILD, DRAWFOUR, NUM_WILDTYPES, NOWILD};
 
 /**
  * @class Card
@@ -25,10 +25,10 @@ enum WildTypes{WILD, DRAWFOUR, NUM_WILDTYPES, NONE};
  */
 class Card{
     protected:
-    Color color=NONE;
+    Color color=NOCOLOR;
     int number;
-    Effect effect=NONE;
-    WildTypes WildType=NONE;
+    Effect effect=NOEFFECT;
+    WildTypes WildType=NOWILD;
     
     
     public:

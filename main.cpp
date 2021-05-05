@@ -78,15 +78,15 @@ void takeTurn(vector<Card*>& deck, vector<Card*>& hand, vector<Card*>& discard, 
 
 int Num_Of_Player(){
     int var;
-    cout << "Hello in UNO Game" << endl;
+    cout << "Welcome to UNO" << endl;
     cout << "Enter the number of players (min 2 , max 10): ";
     cin >> var;
     while (true){
         if (var < 2){
-            cout << "number your entred less than the min requer, please re-enter:  ";
+            cout << "The number you entered is less than the min requered, please re-enter:  ";
             cin >> var;
         }else if (var > 10){
-            cout << "number your entred more than the max requer, please re-enter:  ";
+            cout << "The number you entered is more than the maximum allowed, please choose a different number of players:  ";
             cin >> var;
         }else {
             cout << "Enjoy :) " << endl;
@@ -118,10 +118,14 @@ int main(){
     drawCards(deck, discard, 1);
     
 
-    while(hands.at(gameState.currentPlayerIndex).size() != 0){       
+    while(hands.at(gameState.previousPlayerIndex).size() != 0){
+        /*if(deck==empty){
+            shuffle():
+        }
+        */
         takeTurn(deck, hands.at(gameState.currentPlayerIndex), discard, gameState);
     }
-    cout << "Player " << gameState.currentPlayerIndex << " is the winner" << endl;
+    cout << "Player " << gameState.previousPlayerIndex << " is the winner" << endl;
     return 0;
 }
 
@@ -168,7 +172,11 @@ void drawCards(vector<Card*> &deck, vector<Card*> &target, int numToDraw){
             target.push_back(deck.at(deck.size() - 1));
             deck.pop_back();
         } else {
-            cout << "WARNING: Deck out of cards" << endl;
+            while(target.size() > 1){
+                drawCards(target, deck, 1);
+            }
+            shuffleDeck(deck);
+            drawCards(deck, target, 1);
         }
     }
 }
@@ -206,7 +214,7 @@ void takeTurn(vector<Card*> &deck, vector<Card*> &hand, vector<Card*> &discard, 
     
  
     
-    // TODO: Draw cards if necessary (draw 2 card)
+    // Draw cards if necessary (draw 2 card)
     drawCards(deck, hand, gameState.numCardsToDraw);
     gameState.numCardsToDraw = 0; // reset cards to draw back to 0
     
@@ -215,7 +223,7 @@ void takeTurn(vector<Card*> &deck, vector<Card*> &hand, vector<Card*> &discard, 
     
     // loop for number of cards to play (0 if previously played card was a "skip" or "draw 2")
     //for(int j = 0; j < gameState.numCardsToPlay; j++){
-    if(!gameState.skipTurn){
+    if(gameState.numCardsToPlay==1){
         // Collect user input
         cout << "What would you like to do?" << endl;
         int i;
@@ -244,7 +252,7 @@ void takeTurn(vector<Card*> &deck, vector<Card*> &hand, vector<Card*> &discard, 
             drawCards(deck, hand, 1);
         }
     }else{
-        gameState.skipTurn = false;
+        gameState.numCardsToPlay = 1;
     }
     
     // update variables for next turn
