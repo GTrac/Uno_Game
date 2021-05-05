@@ -119,10 +119,6 @@ int main(){
     
 
     while(hands.at(gameState.previousPlayerIndex).size() != 0){
-        /*if(deck==empty){
-            shuffle():
-        }
-        */
         takeTurn(deck, hands.at(gameState.currentPlayerIndex), discard, gameState);
     }
     cout << "Player " << gameState.previousPlayerIndex << " is the winner" << endl;
