@@ -16,6 +16,9 @@ enum Color{RED, BLUE, GREEN, YELLOW, NUM_COLORS, NOCOLOR};
  */
 enum Effect{DRAWTWO, REVERSE, SKIP, NUM_EFFECTS, NOEFFECT};
 
+/**
+ * Enumeration to represent UNO WildCard types
+ */
 enum WildTypes{WILD, DRAWFOUR, NUM_WILDTYPES, NOWILD};
 
 /**
@@ -51,7 +54,7 @@ class Card{
      * 
      * @return effect type of the card.
      */
-    Effect getEffect() const;//NOT WRITTEN IN .CPP FILE    
+    Effect getEffect() const;
  
     
     /**

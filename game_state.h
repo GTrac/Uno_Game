@@ -45,5 +45,4 @@ class GameState{
     bool skipTurn = false;
 };
 
-
 #endif

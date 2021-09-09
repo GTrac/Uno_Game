@@ -75,48 +75,29 @@ void renderDiscard(vector<Card*>);
  */
 void takeTurn(vector<Card*>& deck, vector<Card*>& hand, vector<Card*>& discard, GameState& gameState);
 
-
-int Num_Of_Player(){
-    int var;
-    cout << "Welcome to UNO" << endl;
-    cout << "Enter the number of players (min 2 , max 10): ";
-    cin >> var;
-    while (true){
-        if (var < 2){
-            cout << "The number you entered is less than the min requered, please re-enter:  ";
-            cin >> var;
-        }else if (var > 10){
-            cout << "The number you entered is more than the maximum allowed, please choose a different number of players:  ";
-            cin >> var;
-        }else {
-            cout << "Enjoy :) " << endl;
-            break;
-        }
-        
-    }
-    return var;
-}
+/**
+ * Requests number of users and validates if the given response is greater than 2 and less
+ * than 10.
+ *
+ * @returns user inputed int
+ */    
+int Num_Of_Player();
 
 
 int main(){
     srand(time(0));
     
-    // 2 is min and 10 is max 
-    
     const int NUM_PLAYERS = Num_Of_Player();
-    
     GameState gameState(NUM_PLAYERS);
     
     vector<Card*> deck;
     vector<Card*> discard;
-    
     vector<vector<Card*>> hands(NUM_PLAYERS);
     
     buildDeck(deck);
     shuffleDeck(deck);
     populateHands(deck, hands);
     drawCards(deck, discard, 1);
-    
 
     while(hands.at(gameState.previousPlayerIndex).size() != 0){
         takeTurn(deck, hands.at(gameState.currentPlayerIndex), discard, gameState);
@@ -139,12 +120,13 @@ void buildDeck(vector<Card*> &deck){
             deck.push_back(temp);
             deck.push_back(temp);
         }
-        //ADD A FOR LOOP ITERATING THROUGH CARD EFFECT NUMERATOR
+        //Generate all special cards
         for(int e = DRAWTWO; e < NUM_EFFECTS; e++){
             Card* temp = new SpecialCard((Color)c, (Effect)e);
             deck.push_back(temp);
             deck.push_back(temp);
         }
+        //Generates all WILD and WILD_DRAW_FOUR type cards
         for(int w = WILD; w < NUM_WILDTYPES; w++){
             Card* temp = new WildCard((WildTypes)w);
             deck.push_back(temp);
@@ -253,4 +235,25 @@ void takeTurn(vector<Card*> &deck, vector<Card*> &hand, vector<Card*> &discard, 
     
     // update variables for next turn
     gameState.nextTurn();
+}
+
+int Num_Of_Player(){
+    int var;
+    cout << "Welcome to UNO" << endl;
+    cout << "Enter the number of players (min 2 , max 10): ";
+    cin >> var;
+    while (true){
+        if (var < 2){
+            cout << "The number you entered is less than the min requered, please re-enter:  ";
+            cin >> var;
+        }else if (var > 10){
+            cout << "The number you entered is more than the maximum allowed, please choose a different number of players:  ";
+            cin >> var;
+        }else {
+            cout << "Enjoy :) " << endl;
+            break;
+        }
+        
+    }
+    return var;
 }
